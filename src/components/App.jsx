@@ -1,60 +1,54 @@
-import {Component} from "react";
-
+import { Component } from 'react';
+import { nanoid } from 'nanoid'
+import ContactList from './ContactList/ContactList';
+import Form from './Form/Form';
+import Section from './Section/Section';
 
 export class App extends Component {
   state = {
     contacts: [],
-    name: ''
+    name: '',
+  };
+
+  submitHandler = data => {
+
+    if (this.state.contacts.some(({name, number}) => (
+      name === data.name || number === data.number
+    ))) {
+  
+        alert("Hello")
+    return }
+    
+    data.id = nanoid();
+    this.setState((prevState) => ({
+      contacts: [...prevState.contacts, data]
+    }))
   }
 
-  render () {
-    return <div>
-<h1>Phonebook</h1>
-<form>
-  <label>
-  <input
-      type="text"
-      name="name"
-      pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-      title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-      required
-  />
-  </label>
-  <button type="submit">Add contact</button>
-</form>
-<h2>Contacts</h2>
-<ul>
-  <li>Rose</li>
-  <li>Rose</li>
-  <li>Rose</li>
-</ul>
-    </div>
+
+
+  deleteContact = contactId => {
+      this.setState(prevState => ({
+        contacts: prevState.contacts.filter(contact => contact.id !== contactId)
+     
+      }))
+  } 
+
+  render() {
+    const { contacts } = this.state;
+    return (
+      <div>
+        <Section title="Phonebook">
+          <Form 
+          onSubmit={this.submitHandler}/>
+        </Section>
+        <Section title="Contacts">
+          <ContactList 
+          contacts={contacts}
+          onHandleDelete = {this.deleteContact} />
+        </Section>
+        
+      </div>
+    );
   }
 }
-
-
-
-
-
-
-
-
-// export const App = () => {
-//   return (
-//     <div>
-// <h1>Phonebook</h1>
-// <form>
-//   <label>
-//     <input></input>
-//   </label>
-//   <button type="submit">Add contact</button>
-// </form>
-// <h2>Contacts</h2>
-// <ul>
-//   <li>Rose</li>
-//   <li>Rose</li>
-//   <li>Rose</li>
-// </ul>
-//     </div>
-//   );
-// };
