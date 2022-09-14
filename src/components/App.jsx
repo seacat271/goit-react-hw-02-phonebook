@@ -10,14 +10,18 @@ export class App extends Component {
     contacts: [],
     filter: '',
   };
-
-  submitHandler = data => {
-
-    if (this.state.contacts.some(({name, number}) => (
-      name === data.name || number === data.number
-    ))) {
   
-        alert("Hello")
+  submitHandler = data => {
+    const {name, number} = data;
+    const {contacts} = this.state
+    if (contacts.some(({name}) => (
+      name.toLowerCase() === data.name.toLowerCase()
+
+    ))) { alert(`${name} is already in contacts`);
+    return };
+    if (this.state.contacts.some(({number}) => (
+      number === data.number
+    ))) { alert(`${number} is already in contacts`)
     return }
 
     data.id = nanoid();
@@ -25,6 +29,7 @@ export class App extends Component {
       contacts: [...prevState.contacts, data]
     }))
   }
+
 
   changeFilter = (event) => {
     this.setState({filter: event.currentTarget.value})
