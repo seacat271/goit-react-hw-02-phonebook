@@ -3,11 +3,12 @@ import { nanoid } from 'nanoid'
 import ContactList from './ContactList/ContactList';
 import Form from './Form/Form';
 import Section from './Section/Section';
+import Filter from "./Filter/Filter"
 
 export class App extends Component {
   state = {
     contacts: [],
-    name: '',
+    filter: '',
   };
 
   submitHandler = data => {
@@ -18,11 +19,16 @@ export class App extends Component {
   
         alert("Hello")
     return }
-    
+
     data.id = nanoid();
     this.setState((prevState) => ({
       contacts: [...prevState.contacts, data]
     }))
+  }
+
+  changeFilter = (event) => {
+    this.setState({filter: event.currentTarget.value})
+
   }
 
 
@@ -34,8 +40,19 @@ export class App extends Component {
       }))
   } 
 
+  getVisibleContacts = () => {
+    const { contacts, filter } = this.state;
+    const filterNormalize = filter.toLowerCase();
+    return contacts.filter((contact) => 
+      contact.name.toLowerCase().includes(filterNormalize)
+    )
+  }
+
+
+
   render() {
-    const { contacts } = this.state;
+    const {filter} = this.state;
+   
     return (
       <div>
         <Section title="Phonebook">
@@ -43,8 +60,11 @@ export class App extends Component {
           onSubmit={this.submitHandler}/>
         </Section>
         <Section title="Contacts">
+         <Filter
+         value = {filter}
+         onChange={this.changeFilter}/>
           <ContactList 
-          contacts={contacts}
+          contacts={this.getVisibleContacts()}
           onHandleDelete = {this.deleteContact} />
         </Section>
         
