@@ -2,9 +2,6 @@ import {Component} from "react";
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-
-
-
 const Label = styled.label`
 display: block;
 margin-bottom: 15px;
@@ -14,7 +11,6 @@ color: #c08e51;
 const Input = styled.input`
 display: block;
 padding: 5px;
-
 `
 const ButtonAdd = styled.button`
 margin: 0;
@@ -29,16 +25,11 @@ transition: color 300ms linear, background-color 300ms linear, border 300ms line
     color: #c08e51;
     border: 1px solid #c08e51;
 }  
-
 `;
 
 const FormInput = styled.form`
 margin-bottom: 20px;
-
 `
-
-
-
 class Form extends Component {
 state ={
     name: "",
