@@ -27,8 +27,6 @@ margin-right: 20px;
 const ButtonDelete = styled(ButtonAdd)`
 padding: 5px 15px;
 `
-
-
 const ContactList = ({contacts, onHandleDelete}) => {
     return (
     <ItemList>
@@ -39,6 +37,7 @@ const ContactList = ({contacts, onHandleDelete}) => {
         ))}
     </ItemList>)
 }
+
 export default ContactList;
 
 ContactList.propTypes = {

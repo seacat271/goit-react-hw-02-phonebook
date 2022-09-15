@@ -15,7 +15,6 @@ padding: 20px;
 border-radius: 5px;
 box-shadow: 0 0 4px 4px #c08e51;
 `
-
 export class App extends Component {
   state = {
     contacts: [],
@@ -43,13 +42,11 @@ export class App extends Component {
 
   changeFilter = (event) => {
     this.setState({filter: event.currentTarget.value})
-
   }
 
   deleteContact = contactId => {
       this.setState(prevState => ({
         contacts: prevState.contacts.filter(contact => contact.id !== contactId)
-     
       }))
   } 
 

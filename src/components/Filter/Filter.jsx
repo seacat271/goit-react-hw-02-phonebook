@@ -2,7 +2,6 @@
 import PropTypes from 'prop-types';
 import {Label, Input} from "../Form/Form"
 
-
 const Filter = ({value, onChange}) => {
 return ( <Label>
     Find contacts by name 

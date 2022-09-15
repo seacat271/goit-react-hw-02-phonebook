@@ -80,7 +80,6 @@ return (
     }
 }
 
-
 export {Form, ButtonAdd, Label, Input}
 
 Form.propTypes = {
