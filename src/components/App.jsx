@@ -1,9 +1,20 @@
 import { Component } from 'react';
+import styled from 'styled-components';
 import { nanoid } from 'nanoid'
+
 import ContactList from './ContactList/ContactList';
-import Form from './Form/Form';
+import {Form} from './Form/Form';
 import Section from './Section/Section';
 import Filter from "./Filter/Filter"
+
+const ContainerGlobal = styled.div`
+width: 400px;
+margin: 20px auto;
+background-color: white;
+padding: 20px;
+border-radius: 5px;
+box-shadow: 0 0 4px 4px #c08e51;
+`
 
 export class App extends Component {
   state = {
@@ -30,13 +41,10 @@ export class App extends Component {
     }))
   }
 
-
   changeFilter = (event) => {
     this.setState({filter: event.currentTarget.value})
 
   }
-
-
 
   deleteContact = contactId => {
       this.setState(prevState => ({
@@ -53,13 +61,11 @@ export class App extends Component {
     )
   }
 
-
-
   render() {
     const {filter} = this.state;
    
     return (
-      <div>
+      <ContainerGlobal>
         <Section title="Phonebook">
           <Form 
           onSubmit={this.submitHandler}/>
@@ -73,7 +79,8 @@ export class App extends Component {
           onHandleDelete = {this.deleteContact} />
         </Section>
         
-      </div>
+      </ContainerGlobal>
     );
   }
 }
+
