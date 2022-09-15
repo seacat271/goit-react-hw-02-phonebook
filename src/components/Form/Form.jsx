@@ -20,7 +20,8 @@ background-color: #c08e51;
 color: white;
 border: 1px solid transparent;
 transition: color 300ms linear, background-color 300ms linear, border 300ms linear;
-&:hover {
+&:hover, 
+&:focus {
     background-color: bisque;
     color: #c08e51;
     border: 1px solid #c08e51;
